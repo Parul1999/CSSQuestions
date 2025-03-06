@@ -248,4 +248,191 @@ p {
 ✔ **Use `woff2` for custom fonts** (better compression).  
 ✔ **Use system fonts (`system-ui`)** for faster loading.  
 
+### **🔥 Complete Guide to `font-weight` in CSS**  
+
+The `font-weight` property controls **how bold or light the text appears**. It affects readability, emphasis, and design aesthetics.
+
+
+```css
+font-weight: <value>;
+```
+✅ **Possible values:**  
+| **Value** | **Effect** | **Numeric Equivalent** |
+|-----------|-----------|-----------------------|
+| `normal` | Default weight | `400` |
+| `bold` | Bolder than normal | `700` |
+| `bolder` | Increases weight relative to parent | **Depends on parent** |
+| `lighter` | Decreases weight relative to parent | **Depends on parent** |
+| `100 - 900` | Fine control over weight | `100` (thin) to `900` (extra bold) |
+
+
+
+## **When Fonts Don’t Support All Weights**
+Not all fonts have **thin (100) or extra bold (900)**. If a weight **isn’t available**, the browser **picks the closest match**.
+
+🔹 **Example:**  
+- `Arial` **supports only `400` and `700`**.
+- `Roboto` **supports `100` to `900`**.
+
+
+### **🚀 Final Thoughts**
+✔ **Use numeric values (`100-900`) for precise weight control.**  
+✔ **Use `bolder/lighter` for inheritance-based designs.**  
+✔ **Check if a font supports different weights before using them.**  
+
+### **🔥 CSS Selectors & Combinators – Quick Reference**  
+
+CSS **selectors** target HTML elements, and **combinators** define relationships between elements.
+
+
+## **Types of CSS Selectors**  
+
+| **Selector** | **Syntax** | **Example** | **Effect** |
+|-------------|------------|------------|------------|
+| **Universal** | `*` | `* { margin: 0; }` | Selects all elements |
+| **Type (Tag)** | `element` | `p { color: red; }` | Selects all `<p>` elements |
+| **Class** | `.class` | `.title { font-size: 20px; }` | Selects elements with a specific class |
+| **ID** | `#id` | `#main { background: blue; }` | Selects an element with a specific ID |
+| **Attribute** | `[attr]` | `[type="text"] { border: 1px solid; }` | Selects elements with an attribute |
+| **Pseudo-class** | `:pseudo-class` | `a:hover { color: red; }` | Targets elements in a specific STATE |
+| **Pseudo-element** | `::pseudo-element` | `p::first-letter { font-size: 2em; }` | Styles PARTS of an element (e.g., first letter) |
+
+---
+
+## ** CSS Combinators (For Element Relationships)**  
+
+| **Combinator** | **Syntax** | **Example** | **Effect** |
+|---------------|------------|------------|------------|
+| **Descendant** | `A B` | `div p { color: blue; }` | Selects `<p>` inside `<div>` (any level deep) |
+| **Child (`>`)** | `A > B` | `div > p { color: red; }` | Selects direct children only |
+| **Adjacent Sibling (`+`)** | `A + B` | `h1 + p { color: green; }` | Selects **first** `<p>` right after `<h1>` |
+| **General Sibling (`~`)** | `A ~ B` | `h1 ~ p { color: gray; }` | Selects all `<p>` siblings after `<h1>` |
+
+---
+
+### **🚀 Final Thoughts**
+✔ **Use selectors wisely** to improve performance and specificity.  
+✔ **Use combinators** for structured styling and **better control** over nested elements.  
+
+# **🔥 CSS Cascading, Specificity, and Inheritance – Complete Guide**  
+
+Understanding **Cascading, Specificity, and Inheritance** is **crucial** for mastering CSS and resolving styling conflicts.
+
+---
+
+## **📌 1. What is Cascading?**  
+**Cascading** refers to **how CSS rules are applied when multiple rules target the same element**. The browser follows a **priority order** to determine which rule wins.
+
+### **🔹 Cascading Priority Order (From Highest to Lowest)**
+1️⃣ **Inline styles** (`style="color: red;"`) → **Highest priority**  
+2️⃣ **IDs** (`#id { color: blue; }`)  
+3️⃣ **Classes, attributes, pseudo-classes** (`.class { color: green; }`)  
+4️⃣ **Elements (Tags)** (`p { color: black; }`)  
+5️⃣ **Universal selector (`*`)** and **inherited styles**  
+6️⃣ **Browser default styles** (Lowest priority)  
+
+✔ **If two rules have the same specificity, the last one in the CSS file wins.**  
+
+🔹 **Example:**
+```css
+p { color: black; }       /* 4th priority */
+#main { color: blue; }    /* 2nd priority */
+.highlight { color: green; } /* 3rd priority */
+p.style { color: red; }   /* 3rd priority */
+```
+✅ The **ID selector** (`#main`) will **override** all class or element styles.
+
+---
+
+## **📌 2. What is Specificity?**  
+**Specificity determines which CSS rule takes precedence over others when styles conflict.**  
+
+### **🔹 Specificity Calculation Formula**
+| **Selector Type** | **Points Given** | **Example** | **Specificity Value** |
+|------------------|----------------|------------|-------------------|
+| **Inline Styles** | `1000` | `<p style="color: red;">` | `1000` |
+| **ID (`#id`)** | `100` | `#main { color: blue; }` | `100` |
+| **Class (`.class`), Attributes, Pseudo-classes** | `10` | `.highlight { color: green; }` | `10` |
+| **Element (Tag)** | `1` | `p { color: black; }` | `1` |
+| **Universal (`*`)** | `0` | `* { color: gray; }` | `0` |
+
+✔ **Higher specificity wins in conflicts.**  
+✔ **If specificity is equal, the last declared rule wins.**  
+
+🔹 **Example:**  
+```css
+p { color: black; }      /* Specificity: 1 */
+#main { color: blue; }   /* Specificity: 100 */
+.highlight { color: green; } /* Specificity: 10 */
+p.style { color: red; }  /* Specificity: 10 */
+```
+✅ **The ID (`#main`) rule wins** because **100 > 10 > 1**.
+
+---
+
+## **📌 3. What is Inheritance?**  
+Inheritance allows **some CSS properties to be automatically passed from parent elements to child elements**.
+
+### **🔹 Inherited Properties**
+✔ **Text-based properties** are **inherited** by default:
+- `color`
+- `font-size`
+- `letter-spacing`
+- `visibility`
+
+**Input/Buttons - DO not inherit by default , need to use inherit property**
+
+✔ **Box model properties** **are NOT inherited**:
+- `margin`
+- `padding`
+- `border`
+- `width`, `height`
+
+The background-color is not inherited but the background is visible for the child as well , this is because the child's background-color is transparent and hence we find the background-color of the parent for child as well.
+
+🔹 **Example:**
+```css
+body {
+  color: blue;  /* All text inside body will be blue */
+}
+p {
+  font-size: inherit;  /* Explicitly inherit */
+}
+```
+✅ The `<p>` will **inherit `color: blue;` from `<body>`**.
+
+---
+
+## **`!important` – Overriding Everything**
+The `!important` rule **forces a style to override all other rules**, even those with higher specificity.
+
+🔹 **Example:**
+```css
+p {
+  color: red !important;
+}
+```
+✔ **Even inline styles won’t override this rule!**  
+❌ **Avoid excessive use** as it makes debugging difficult.
+
+---
+
+## **🔥 Final Summary Table**
+| **Concept** | **What It Does?** | **Best Use Case** |
+|-------------|------------------|------------------|
+| **Cascading** | Determines which rule is applied | When multiple rules target the same element |
+| **Specificity** | Assigns weight to different selectors | Resolving conflicts between different rules |
+| **Inheritance** | Passes styles from parent to child | Text-based properties (color, font-size) |
+| **`!important`** | Overrides all other styles | **Use sparingly** for critical overrides |
+
+---
+
+### **🚀 Final Thoughts**
+✔ **Understand cascading to avoid unexpected styling issues.**  
+✔ **Use specificity wisely; avoid using too many ID selectors.**  
+✔ **Leverage inheritance to simplify CSS and reduce redundancy.**  
+
+
+
+
 
