@@ -302,6 +302,7 @@ CSS **selectors** target HTML elements, and **combinators** define relationships
 | **Pseudo-class** | `:pseudo-class` | `a:hover { color: red; }` | Targets elements in a specific STATE |
 | **Pseudo-element** | `::pseudo-element` | `p::first-letter { font-size: 2em; }` | Styles PARTS of an element (e.g., first letter) |
 
+If the content property is not specified, has an invalid value, or has normal or none as a value, then the ::before/::after pseudo-element is not rendered. It behaves as if display: none is set.
 ---
 
 ## ** CSS Combinators (For Element Relationships)**  
@@ -785,3 +786,158 @@ In Skew - meaning stretch to an angle and in case we make it 90 , it tends to co
 
 In case of parent whose position is relative or the root element
 ![alt text](image-23.png)
+
+In absolute , no space is left in its original position but in case of relative the space is evident
+
+![alt text](image-24.png)
+
+
+position - sticky : It sticks as per scrolling
+
+**FlexBox**
+Flexbox helps to make the screen responsive - It helps to contain the elements in the container and ignores height/width by default if its not fitting
+![alt text](image-25.png)
+![alt text](image-26.png)
+![alt text](image-27.png)
+![alt text](image-28.png)
+
+To adjust all the extra spaces :
+1. space-between : All the space between elements
+2. space-around: 1/2 the space before 1st element and after last element than the space in b/w
+3. space-evenly - equal spaces throughout
+![alt text](image-29.png)
+
+
+
+Flex - tries to fit everything and ignores height/width to fit in , so to retain and move other elements to next line: wrap (along main axis). 
+by -default : no-wrap . wrap-weverse : reverse on the basis of cross-axis
+![alt text](image-30.png)
+
+![alt text](image-31.png)
+
+align-items : baseline --> The divs are of different size , the content of the baseline should be same
+
+![alt text](image-32.png)
+
+Align Self >> Align Content - priority
+
+![alt text](image-33.png)
+
+![alt text](image-34.png)
+It is to grow/shrink the elements as per the extra space .
+In case of row : width ; column : height
+
+
+There is no unit of flex-grow , but write in proportions i.e 1(take available space) ,2 ,3 etc. 
+![alt text](image-35.png)
+
+![alt text](image-36.png)
+By default - shrink is 1 
+
+![alt text](image-37.png)
+
+**Grid**
+
+Grid - 2D , default - vertical ; Flex  - 1D , default - horizontal. But the flex/grid items are - DIRECT CHILDREN ONLY
+
+![alt text](image-38.png)
+
+![alt text](image-39.png)
+Grid Cell , Grid Lines , Grid Track - Track b/w consecutive grid lines .
+No of lines = track + 1
+
+![alt text](image-40.png)
+
+in columns - does not prefer auto as auto means as per content. so bettter than auto 
+
+![alt text](image-41.png)
+
+grid-template-row: 1fr 1fr 1fr 1fr - alternative way
+
+fr - fraction space of 100% of available width
+
+![alt text](image-42.png)
+
+
+![alt text](image-43.png)
+If height -width is there which occupies less space , still it keeps the space of lines empty
+
+![alt text](image-44.png)
+
+![alt text](image-45.png)
+
+place : combination of justify+ align - in case both elements have same value.
+
+Grid - behaves as block item , but want it as inline . So display : inle-grid / same for flex.
+
+# **CSS Animation**
+![alt text](image-46.png)
+![alt text](image-47.png)
+
+![alt text](image-49.png)
+![alt text](image-48.png)
+
+It's keyframeS and not keyframe
+Iteration : How many times we want to show the animation . Infinite is also an option
+
+![alt text](image-50.png)
+
+to - 0% ; from - 100%
+
+![alt text](image-51.png)
+
+
+Viewport - visible part of screen
+![alt text](image-52.png)
+![alt text](image-53.png)
+![alt text](image-55.png)
+
+### **Is `height` for Content Only?**
+Yes, when you set `height` for an element, it applies **only to the content area**, **excluding padding, border, and margin** by default.
+
+---
+
+### **CSS Box Model and `height` Behavior**
+By default, `height` **only affects the content** area of an element, **not the total size** (which includes padding, border, and margin).
+
+📌 **Example:**
+```css
+.box {
+    height: 100px;
+    padding: 20px;
+    border: 5px solid black;
+}
+```
+
+💡 **Total height calculation (default behavior):**
+- **Content height** = `100px`
+- **Padding (top + bottom)** = `20px + 20px = 40px`
+- **Border (top + bottom)** = `5px + 5px = 10px`
+- **Total visible height** = **`100px + 40px + 10px = 150px`**
+
+---
+
+### **How to Include Padding & Border in `height`?**
+To make `height` include padding and border, use:
+
+```css
+.box {
+    height: 100px;
+    padding: 20px;
+    border: 5px solid black;
+    box-sizing: border-box; /* Makes height include padding and border */
+}
+```
+
+Now, the **total height remains 100px** (instead of 150px).
+
+---
+
+### **Key Takeaways**
+✅ **By default, `height` applies only to the content area.**  
+✅ **Padding, border, and margin are extra and add to the total size.**  
+✅ **Use `box-sizing: border-box;` to make `height` include padding & border.**  
+
+
+position - static won't set z-index . Default - 0 . if same z-index the one whose css is defined later is shown above
+![alt text](image-54.png)
