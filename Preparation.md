@@ -941,3 +941,10 @@ Now, the **total height remains 100px** (instead of 150px).
 
 position - static won't set z-index . Default - 0 . if same z-index the one whose css is defined later is shown above
 ![alt text](image-54.png)
+
+
+![alt text](image-56.png)
+
+![alt text](image-57.png)
+
+![alt text](image-58.png)
